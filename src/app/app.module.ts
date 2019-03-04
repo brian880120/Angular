@@ -26,12 +26,21 @@ import { EventRouteActivator } from './events-app/details/event-route-activator.
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     EventService,
     ToastrService,
-    EventRouteActivator
+    EventRouteActivator,
+    {
+        provide: 'canDeactivateCreateEvent',
+        useValue: (component: CreateEventComponent) => {
+            if (component.isDirty) {
+                return window.confirm('You have not saved this event, do you really want to cancel?');
+            }
+            return true;
+        }
+    },
   ],
   bootstrap: [EventsAppComponent]
 })

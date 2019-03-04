@@ -8,6 +8,7 @@ import { EventRouteActivator } from './events-app/details/event-route-activator.
 const routes: Routes = [{
     path: 'events/new',
     component: CreateEventComponent,
+    canDeactivate: ['canDeactivateCreateEvent'],
 }, {
     path: 'events/:id',
     component: EventDetailsComponent,
@@ -19,6 +20,9 @@ const routes: Routes = [{
     path: '',
     redirectTo: '/events',
     pathMatch: 'full',
+}, {
+    path: 'user',
+    loadChildren: './user/user.module#UserModule',
 }];
 
 @NgModule({

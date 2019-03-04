@@ -9,7 +9,7 @@ import { ToastrService } from '../common/toastr.service';
     `]
 })
 export class EventListComponent implements OnInit {
-    events: any[]
+    events: any;
 
     constructor(
         private eventService: EventService,
@@ -17,7 +17,9 @@ export class EventListComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.events = this.eventService.getEvents();
+        this.eventService.getEvents().subscribe(events => {
+            this.events = events;
+        })
     }
 
     handleDetailClick(data) {
