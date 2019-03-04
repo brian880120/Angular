@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { EventsAppComponent } from './events-app/events-app.component';
 import { EventListComponent } from './events-app/list/event-list.component';
-import { EventDetailComponent } from './events-app/details/event-detail.component';
+import { ThumbnailComponent } from './events-app/thumbnail/thumbnail.component';
 import { NavbarComponent } from './common/nav/navbar.component';
 
 import { EventService } from './events-app/common/event.service';
@@ -14,7 +14,7 @@ import { ToastrService } from './events-app/common/toastr.service';
   declarations: [
     EventsAppComponent,
     EventListComponent,
-    EventDetailComponent,
+    ThumbnailComponent,
     NavbarComponent,
   ],
   imports: [
