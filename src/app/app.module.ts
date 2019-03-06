@@ -1,3 +1,4 @@
+import { AuthService } from './user/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -31,6 +32,7 @@ import { EventRouteActivator } from './events-app/details/event-route-activator.
   providers: [
     EventService,
     ToastrService,
+    AuthService,
     EventRouteActivator,
     {
         provide: 'canDeactivateCreateEvent',
