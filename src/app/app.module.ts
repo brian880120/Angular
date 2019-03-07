@@ -1,3 +1,4 @@
+import { SessionListComponent } from './events-app/create-event/session/list/session-list.component';
 import { CreateSessionComponent } from './events-app/create-event/session/create-session.component';
 import { AuthService } from './user/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -26,6 +27,7 @@ import { EventRouteActivator } from './events-app/details/event-route-activator.
     EventDetailsComponent,
     CreateEventComponent,
     CreateSessionComponent,
+    SessionListComponent,
     NavbarComponent,
     Error404Component,
   ],

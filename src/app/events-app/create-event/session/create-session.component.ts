@@ -1,9 +1,11 @@
 import { ISession } from './../../common/event.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { restrictedWords } from '../../common/input-validators';
+import { timingSafeEqual } from 'crypto';
 
 @Component({
+    selector: 'create-session',
     templateUrl: './create-session.component.html',
     styleUrls: ['./create-session.component.scss'],
 })
@@ -14,6 +16,11 @@ export class CreateSessionComponent implements OnInit {
     duration: FormControl
     level: FormControl
     abstract: FormControl
+    @Output()
+    saveNewSession = new EventEmitter();
+
+    @Output()
+    cancelAddSession = new EventEmitter();
 
     ngOnInit() {
         this.name = new FormControl('', Validators.required);
@@ -45,6 +52,10 @@ export class CreateSessionComponent implements OnInit {
             abstract: formValues.abstract,
             voters: []
         };
-        console.log(session);
+        this.saveNewSession.emit(session);
+    }
+
+    cancel(): void {
+        this.cancelAddSession.emit();
     }
 }
