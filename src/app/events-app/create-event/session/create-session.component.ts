@@ -2,7 +2,6 @@ import { ISession } from './../../common/event.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { restrictedWords } from '../../common/input-validators';
-import { timingSafeEqual } from 'crypto';
 
 @Component({
     selector: 'create-session',

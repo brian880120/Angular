@@ -1,3 +1,4 @@
+import { CollapsibleWellComponent } from './events-app/common/collapsible-well/collapsible-well.component';
 import { SessionListComponent } from './events-app/create-event/session/list/session-list.component';
 import { CreateSessionComponent } from './events-app/create-event/session/create-session.component';
 import { AuthService } from './user/auth.service';
@@ -29,6 +30,7 @@ import { EventRouteActivator } from './events-app/details/event-route-activator.
     CreateSessionComponent,
     SessionListComponent,
     NavbarComponent,
+    CollapsibleWellComponent,
     Error404Component,
   ],
   imports: [
