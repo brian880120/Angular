@@ -1,3 +1,4 @@
+import { CreateSessionComponent } from './events-app/create-event/session/create-session.component';
 import { CreateEventComponent } from './events-app/create-event/create-event.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -9,6 +10,9 @@ const routes: Routes = [{
     path: 'events/new',
     component: CreateEventComponent,
     canDeactivate: ['canDeactivateCreateEvent'],
+}, {
+    path: 'events/session/new',
+    component: CreateSessionComponent,
 }, {
     path: 'events/:id',
     component: EventDetailsComponent,
