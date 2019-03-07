@@ -1,9 +1,11 @@
 import { ISession } from './../../common/event.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { restrictedWords } from '../../common/input-validators';
 
 @Component({
     templateUrl: './create-session.component.html',
+    styleUrls: ['./create-session.component.scss'],
 })
 export class CreateSessionComponent implements OnInit {
     newSessionForm: FormGroup
@@ -18,7 +20,11 @@ export class CreateSessionComponent implements OnInit {
         this.presenter = new FormControl('', Validators.required);
         this.duration = new FormControl('', Validators.required);
         this.level = new FormControl('', Validators.required);
-        this.abstract = new FormControl('', [Validators.required, Validators.maxLength(400)]);
+        this.abstract = new FormControl('', [
+            Validators.required,
+            Validators.maxLength(10),
+            restrictedWords(['abc'])
+        ]);
 
         this.newSessionForm = new FormGroup({
             name: this.name,

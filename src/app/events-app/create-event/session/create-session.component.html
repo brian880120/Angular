@@ -41,8 +41,12 @@
                 <option value="Advanced">Advanced</option>
             </select>
         </div>
-        <div class="form-group">
+        <div class="form-group"
+            [ngClass]="{'error': abstract.invalid && abstract.dirty}">
             <label for="abstract">Abstract:</label>
+            <em *ngIf="abstract.invalid && abstract.dirty && abstract?.errors.required">Required</em>
+            <em *ngIf="abstract.invalid && abstract.dirty && abstract?.errors.maxlength">Cannot exceed 400 characters</em>
+            <em *ngIf="abstract.invalid && abstract.dirty && abstract?.errors.restrictedWords">restricted words {{abstract.errors.restrictedWords}} found</em>
             <textarea id="abstract"
                 formControlName="abstract"
                 rows=3
@@ -52,6 +56,7 @@
         </div>
         <button type="submit"
             (click)="saveSession(newSessionForm.value)"
+            [disabled]="newSessionForm.invalid"
             class="btn btn-primary">
             Save
         </button>
