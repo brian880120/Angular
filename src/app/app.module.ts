@@ -1,5 +1,7 @@
 import { AuthService } from './user/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -28,6 +30,9 @@ import { EventRouteActivator } from './events-app/details/event-route-activator.
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule
   ],
   providers: [
     EventService,

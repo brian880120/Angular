@@ -1,0 +1,59 @@
+import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
+
+providers: [
+    EventRouterActivator,
+    {
+        provide: 'canDeactivateCreateEvent',
+        useValue: (component: CreateEventComponent) => {
+            return true/false
+        }
+    }
+]
+
+class EventRouterActivator implements CanActivate {
+    canActivate(route: ActivatedRouteSnapshot) {
+
+    }
+}
+
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [{
+    path: '',
+    component: Component,
+    canDeactivate: [],
+    canActivate: [],
+}, {
+    path: '',
+    loadChildren: './user/user.module#[ModuleName]'
+}];
+
+@NgModule({
+    imports: [RouterModule.forRoot(routes)]
+})
+
+<form #loginForm="ngForm">
+    <span *ngIf="loginForm.controls.userName.invalid">Required</span>
+    <input (ngModel)="userName"
+        name="userName" />
+    <button type="submit"
+        [disabled]="loginForm.invalid">
+        Login
+    </button>
+</form>
+
+<form [formGroup]="profileForm">
+    <input formControlName="firstName" />
+</form>
+
+class Component implements OnInit {
+    profileForm: FormGroup
+    private firstName: formControl
+
+    ngOnInit() {
+        this.firstName = new FormControl();
+        this.profileForm = new FormGroup({
+            firstName: this.firstName,
+        })
+    }
+}

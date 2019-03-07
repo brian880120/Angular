@@ -12,5 +12,5 @@ import { IEvent } from '../common/event.model';
 })
 export class ThumbnailComponent {
     @Input()
-    event: any
+    event: IEvent
 }

@@ -40,4 +40,8 @@ export class ProfileComponent implements OnInit {
             this.router.navigate(['events'])
         }
     }
+
+    validateFirstName() {
+        return this.firstName.valid || this.firstName.untouched;
+    }
 }
