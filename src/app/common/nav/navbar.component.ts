@@ -20,6 +20,9 @@ export class NavbarComponent {
     ) {}
 
     searchSessions(searchTerm: string) {
-        //this.eventService.searchSessions(searchTerm);
+        this.eventService.searchSessions(searchTerm).subscribe(results => {
+            this.foundSessions = results;
+            console.log(this.foundSessions);
+        })
     }
 }

@@ -19,9 +19,12 @@ import { Error404Component } from './errors/404.component';
 
 import { EventService } from './events-app/common/event.service';
 import { TOASTR_TOKEN, Toastr } from './events-app/common/toastr.service';
+import { JQ_TOKEN } from './events-app/common/jquery.service';
 import { EventRouteActivator } from './events-app/details/event-route-activator.service';
+import { SimpleModalComponent } from './common/simple-modal/simple-modal.component';
 
-declare let toastr: Toastr
+let toastr: Toastr = window['toastr'];
+let jQuery = window['$'];
 
 @NgModule({
   declarations: [
@@ -35,6 +38,7 @@ declare let toastr: Toastr
     NavbarComponent,
     CollapsibleWellComponent,
     Error404Component,
+    SimpleModalComponent,
     DurationPipe
   ],
   imports: [
@@ -49,6 +53,10 @@ declare let toastr: Toastr
     {
       provide: TOASTR_TOKEN,
       useValue: toastr,
+    },
+    {
+        provide: JQ_TOKEN,
+        useValue: jQuery,
     },
     AuthService,
     EventRouteActivator,
