@@ -1,3 +1,4 @@
+import { ModalTriggerDirective } from './common/simple-modal/modalTrigger.directive';
 import { DurationPipe } from './events-app/common/duration.pipe';
 import { CollapsibleWellComponent } from './events-app/common/collapsible-well/collapsible-well.component';
 import { SessionListComponent } from './events-app/create-event/session/list/session-list.component';
@@ -39,7 +40,8 @@ let jQuery = window['$'];
     CollapsibleWellComponent,
     Error404Component,
     SimpleModalComponent,
-    DurationPipe
+    DurationPipe,
+    ModalTriggerDirective
   ],
   imports: [
     BrowserModule,

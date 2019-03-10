@@ -12,6 +12,7 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
     searchTerm: string = '';
+    simpleModalTitle: string = 'Matching Sessions';
     foundSessions: ISession[];
 
     constructor(
@@ -22,7 +23,6 @@ export class NavbarComponent {
     searchSessions(searchTerm: string) {
         this.eventService.searchSessions(searchTerm).subscribe(results => {
             this.foundSessions = results;
-            console.log(this.foundSessions);
         })
     }
 }
