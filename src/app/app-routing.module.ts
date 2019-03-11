@@ -1,10 +1,10 @@
+import { EventResolver } from './events-app/common/event-resolver.service';
 import { CreateSessionComponent } from './events-app/create-event/session/create-session.component';
 import { CreateEventComponent } from './events-app/create-event/create-event.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EventListComponent } from './events-app/list/event-list.component';
 import { EventDetailsComponent } from './events-app/details/event-details.component';
-import { EventRouteActivator } from './events-app/details/event-route-activator.service';
 
 const routes: Routes = [{
     path: 'events/new',
@@ -16,7 +16,9 @@ const routes: Routes = [{
 }, {
     path: 'events/:id',
     component: EventDetailsComponent,
-    canActivate: [EventRouteActivator],
+    resolve: {
+        event: EventResolver,
+    }
 }, {
     path: 'events',
     component: EventListComponent,

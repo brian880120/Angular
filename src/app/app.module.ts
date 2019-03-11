@@ -1,3 +1,4 @@
+import { EventResolver } from './events-app/common/event-resolver.service';
 import { LocationValidator } from './events-app/create-event/location-validator.directive';
 import { UpvoteService } from './events-app/create-event/session/vote/upvote.service';
 import { ModalTriggerDirective } from './common/simple-modal/modalTrigger.directive';
@@ -9,6 +10,7 @@ import { AuthService } from './user/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,7 +25,6 @@ import { Error404Component } from './errors/404.component';
 import { EventService } from './events-app/common/event.service';
 import { TOASTR_TOKEN, Toastr } from './events-app/common/toastr.service';
 import { JQ_TOKEN } from './events-app/common/jquery.service';
-import { EventRouteActivator } from './events-app/details/event-route-activator.service';
 import { SimpleModalComponent } from './common/simple-modal/simple-modal.component';
 import { UpvoteComponent } from './events-app/create-event/session/vote/upvote.component';
 
@@ -53,7 +54,8 @@ let jQuery = window['$'];
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule,
   ],
   providers: [
     EventService,
@@ -66,7 +68,6 @@ let jQuery = window['$'];
         useValue: jQuery,
     },
     AuthService,
-    EventRouteActivator,
     {
         provide: 'canDeactivateCreateEvent',
         useValue: (component: CreateEventComponent) => {
@@ -76,7 +77,8 @@ let jQuery = window['$'];
             return true;
         }
     },
-    UpvoteService
+    UpvoteService,
+    EventResolver
   ],
   bootstrap: [EventsAppComponent]
 })
