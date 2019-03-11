@@ -1,3 +1,4 @@
+import { UpvoteService } from './events-app/create-event/session/vote/upvote.service';
 import { ModalTriggerDirective } from './common/simple-modal/modalTrigger.directive';
 import { DurationPipe } from './events-app/common/duration.pipe';
 import { CollapsibleWellComponent } from './events-app/common/collapsible-well/collapsible-well.component';
@@ -23,6 +24,7 @@ import { TOASTR_TOKEN, Toastr } from './events-app/common/toastr.service';
 import { JQ_TOKEN } from './events-app/common/jquery.service';
 import { EventRouteActivator } from './events-app/details/event-route-activator.service';
 import { SimpleModalComponent } from './common/simple-modal/simple-modal.component';
+import { UpvoteComponent } from './events-app/create-event/session/vote/upvote.component';
 
 let toastr: Toastr = window['toastr'];
 let jQuery = window['$'];
@@ -40,6 +42,7 @@ let jQuery = window['$'];
     CollapsibleWellComponent,
     Error404Component,
     SimpleModalComponent,
+    UpvoteComponent,
     DurationPipe,
     ModalTriggerDirective
   ],
@@ -71,6 +74,7 @@ let jQuery = window['$'];
             return true;
         }
     },
+    UpvoteService
   ],
   bootstrap: [EventsAppComponent]
 })

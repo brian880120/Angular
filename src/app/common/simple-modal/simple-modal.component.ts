@@ -11,6 +11,9 @@ export class SimpleModalComponent implements OnInit {
     @Input()
     title: string;
 
+    @Input()
+    closeOnBodyClick: string;
+
     @ViewChild('modalContainer') containerEl: ElementRef
 
     @Input()
@@ -21,6 +24,8 @@ export class SimpleModalComponent implements OnInit {
     ngOnInit() { }
 
     closeModal() {
-        this.$(this.containerEl.nativeElement).modal('hide');
+        if (this.closeOnBodyClick.toLocaleLowerCase() === 'true') {
+            this.$(this.containerEl.nativeElement).modal('hide');
+        }
     }
 }

@@ -62,7 +62,8 @@
 </div>
 
 <simple-modal elementId="searchResults"
-    [title]="simpleModalTitle">
+    [title]="simpleModalTitle"
+    closeOnBodyClick="true">
     <div class="list-group">
         <a class="list-group-item"
             *ngFor="let session of foundSessions"

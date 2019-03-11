@@ -1,9 +1,12 @@
+import { AuthService } from './../../../../user/auth.service';
+import { UpvoteService } from './../vote/upvote.service';
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ISession } from 'src/app/events-app/common/event.model';
 
 @Component({
     selector: 'session-list',
-    templateUrl: './session-list.component.html'
+    templateUrl: './session-list.component.html',
+    styles: ['collapsible-well h6 { margin-top: -5px; margin-bottom: 10px; }'],
 })
 
 export class SessionListComponent implements OnInit, OnChanges {
@@ -18,7 +21,10 @@ export class SessionListComponent implements OnInit, OnChanges {
 
     visibleSessions: ISession[] = [];
 
-    constructor() { }
+    constructor(
+        private upvoteService: UpvoteService,
+        public auth: AuthService,
+    ) { }
 
     ngOnInit() { }
 
@@ -49,5 +55,25 @@ export class SessionListComponent implements OnInit, OnChanges {
 
     sortByVotesDesc(s1: ISession, s2: ISession) {
         return s2.voters.length - s1.voters.length;
+    }
+
+    userHasVoted(session: ISession): boolean {
+        return this.upvoteService.userHasVoted(session, this.auth.currentUser.userName);
+    }
+
+    toggleVote(session: ISession): void {
+        if (this.userHasVoted(session)) {
+            this.upvoteService.deleteVoter(session, this.auth.currentUser.userName);
+        } else {
+            this.upvoteService.addVoter(session, this.auth.currentUser.userName);
+        }
+
+        if (this.sortBy === 'votes') {
+            this.visibleSessions.sort(this.sortByVotesDesc);
+        }
+    }
+
+    isUserAuthenticated() {
+        return this.auth.isAuthenticated();
     }
 }
