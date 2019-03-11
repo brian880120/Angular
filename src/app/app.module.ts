@@ -1,4 +1,4 @@
-import { LocationVlidator } from './events-app/create-event/location-validator.directive';
+import { LocationValidator } from './events-app/create-event/location-validator.directive';
 import { UpvoteService } from './events-app/create-event/session/vote/upvote.service';
 import { ModalTriggerDirective } from './common/simple-modal/modalTrigger.directive';
 import { DurationPipe } from './events-app/common/duration.pipe';
@@ -46,7 +46,7 @@ let jQuery = window['$'];
     UpvoteComponent,
     DurationPipe,
     ModalTriggerDirective,
-    LocationVlidator,
+    LocationValidator,
   ],
   imports: [
     BrowserModule,
