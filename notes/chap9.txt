@@ -1,0 +1,34 @@
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({name: 'duration'})
+export class DurationPipe implements PipeTransform {
+    transform(value: number): string {
+        return '';
+    }
+}
+
+_____________________________________________________
+
+// add filter and sort
+
+export class Component implements OnChanges {
+    @Input() filterBy: string;
+    @Input() sortBy: string;
+    sessions: any[];
+    visibleSessions: any[] = [];
+
+    onOnChanges() {
+        this.filterSessions(this.filterBy);
+        this.sortBy === 'name' ? this.visibleSessions.sort(() => {}) : this.visibleSessions.sort(() => {});
+    }
+
+    filterSessions(filter) {
+        if (filter === 'all') {
+            visibleSessions = this.sessions.slice(0);
+        } else {
+            visibleSessions = this.sessions.filter(session => {
+                return session.level.toLocaleLowerCase() === filter;
+            })
+        }
+    }
+}
