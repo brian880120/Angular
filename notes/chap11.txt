@@ -1,0 +1,48 @@
+// navbar.component.html
+<form>
+    <button modal-trigger="searchResults">Search</button>
+</form>
+<simple-modal elementId="" title="">
+    <div></div>
+</simple-modal>
+
+// simpleModal.component.ts
+
+@Component({
+    selector: 'simple-modal',
+    template: `
+        <div id="{{elementId}}" class="modal fade">
+            <h4>{{title}}</h4>
+            <div class="modal.body">
+                <ng-content></ng-content>
+            </div>
+        </div>
+    `
+})
+export Component {
+    @Input() title: string
+    @Input() elementId: string;
+}
+
+import { Directive } from '@angualr/core';
+
+@Directive({
+    selector: '[modal-trigger]'
+})
+export class ModalTriggerDirective OnInit {
+    private el: HTMLElement;
+    @Input('modal-trigger') modalId: string;
+
+    constructor(
+        @Inject(JQ_TOKEN) private $: any,
+        ref: ElementRef
+    ) {
+        this.el = ref.nativeElement;
+    }
+
+    ngOnInit() {
+        this.el.addEventListener('click', e => {
+            this.$(`#${modalId}`).modal({});
+        })
+    }
+}
