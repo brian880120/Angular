@@ -1,0 +1,27 @@
+import { InjectionToken } from '@angular/core';
+
+export let TOASTR_TOKEN = new InjectionToken<>('toastr')
+
+export interface Toastr {
+    success(msg: string, title?: string): void;
+    info(msg: string, title?: string): void;
+    warning(msg: string, title?: string): void;
+    error(msg: string, title?: string): void;
+}
+
+import { TOASTR_TOKEN, Toastr } from '';
+
+let toastr: Toastr = window['toastr'];
+
+providers: [
+    {
+        provide: TOASTR_TOKEN,
+        useValue: toastr
+    }
+]
+
+import { TOASTR_TOKEN, Toastr } from '';
+
+export class Component {
+    constructor(@Inject(TOASTR_TOKEN) private toastr: Toastr) {}
+}
