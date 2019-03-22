@@ -1,0 +1,61 @@
+<form #loginForm="ngForm">
+    <input (ngModel)="userName" name="userName" />
+</form>
+
+export class Component {
+    userName: string;
+    password: String;
+
+    login(loginForm.value);
+}
+
+// can access form with loginForm
+loginForm.controls.userName.invalid
+loginForm.valid
+
+// Reactive form
+
+<form [formGroup]="profileForm">
+    <input formControlName="firstName" />
+</form>
+
+export class Component {
+    profileForm: FormGroup;
+
+    ngOnInit() {
+        let firstName = new FormControl(
+            initValue
+            Validators.required,
+            Validators.pattern('')
+        );
+        let password = new FormControl(initValue);
+        this.profileForm = new FormGroup({
+            firstName: firstName,
+            password: password,
+        })
+    }
+}
+
+_____________________________________________
+
+// custom validator
+
+this.field = new FormContrl('', [
+    this.restrictedWords
+]);
+
+private restrictedWords(words) {
+    return (control: FormContrl): {[key: string]: any} => {
+        if (!words) {
+            return null;
+        }
+
+        let invalidWords = words.map(w => control.value.inclues(w) ? w : null)
+            .filter(w => w !== null);
+        return invalidWords && invalidWords.length > 0 ?
+            {'restrictedWords': invalidWords.join(',')} :
+            null;
+    };
+}
+
+<em *ngIf="field.errors.restrictedWords">{{field.errors.restrictedWords}}</em>
