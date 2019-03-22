@@ -1,0 +1,18 @@
+import { Injectable } from '@angular/core';
+
+// need to register in module providers
+@Injectable()
+export class EventService {
+    getEvents() {
+        return [];
+    }
+}
+
+export class SampleComponent {
+    events: any[];
+
+    // if private, template can't referrence it
+    constructor(private eventService: EventService) {
+        this.events = this.eventService.getEvents();
+    }
+};

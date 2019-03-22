@@ -1,0 +1,34 @@
+<Child [event]="" (eventClick)="someFunction($event)"/>
+
+@Component({
+    selector: '',
+    templateUrl: '',
+})
+export class Child {
+    @Input()
+    event: any
+
+    @Output()
+    eventClick = new EventEmitter();
+
+    onClick() {
+        this.eventClick.emit(value);
+    }
+}
+
+parent component can access child component function by:
+<Child #childComponent />
+<button (click)="childComponent.foo()" />
+
+interpolation: {{}}
+property binding: [src]=""
+
+<div [ngSwitch]="event.time">
+    <span *ngSwitchCase=""></span>
+    <span *ngSwitchCase=""></span>
+    <span *ngSwitchCase=""></span>
+    <span *ngSwitchDefault></span>
+<div>
+
+[class.green]="event.time === '8:00 am'" // assign class 'green' to elemement if condition returns true
+[ngClass]="{green: event.time === '8:00 am', bold: event.time === '8:00 am'}" // ngClass allows multiple class to be assigned. expression could be the return object of a function

@@ -1,0 +1,129 @@
+// bootstrap Component
+
+@Component({
+    template: `
+        <router-outlet></router-outlet>
+    `
+})
+export Component {}
+
+import { Routes } from '@angular/router';
+
+export const appRoutes: Routes = [{
+    path: '',
+    component: Component
+}, {
+    path: '',
+    redirectTo: '',
+    pathMatch: 'full',
+}];
+
+import { RouterModule } from '@angular/router';
+
+@NgModule({
+    imports: [
+        RouterModule.forRoot([routeFileName])
+    ]
+})
+
+// access router parameter
+export class Component {
+    event: any;
+
+    constructor(private route: ActivatedRoute) {}
+
+    ngOnInit() {
+        this.event = this.eventService.getEvent(+this.route.snapshot.params['id']);
+    }
+}
+
+_____________________________________________
+
+// navigate to route
+<div [routerLink]="['/events', event.id]"
+    routerLinkActive="active" />
+
+export class Component {
+    constructor(private router: Router) {}
+
+    onNavigate() {
+        this.router.navigate(['/events']);
+    }
+}
+
+_____________________________________________
+
+// route guard and resolve
+
+import { CanActivate } from '@angular/router';
+import { Injectable } from '@angular/core';
+
+@Injectable()
+export class EventRouteActivator implements CanActivate {
+    constructor() {
+
+    }
+
+    CanActivate() {
+        const bool = 'expression';
+        if (!bool) {
+            this.router.navigate(['']);
+        }
+        return bool;
+    }
+};
+
+export const routes: Routes = [{
+    path: '',
+    canActivate: [EventRouteActivator],
+    canDeactivate: ['something']
+}]
+
+@NgModule({
+    providers: [{
+        provide: 'something',
+        useValue: (component: Component) => {
+            if (component['property']) {
+
+            } else {
+
+            }
+        }
+    }]
+})
+_____________________________________________
+
+import { Injectable } from '@angular/core';
+import { Resolve } from '@angular/router';
+
+@Injectable()
+export class Resolver implements Resolve<any> {
+    resolve() {
+        return this.service.getData();
+    }
+};
+
+export const routes: Routes = [{
+    path: '',
+    resolve: {
+        key: Resolver
+    }
+}]
+
+export class Component implements OnInit {
+    constructor(private route: ActivatedRoute) {}
+
+    ngOnInit() {
+        this.events = this.route.snapshot.data[key];
+    }
+}
+
+_____________________________________________
+
+lazy load
+
+export const routes: Routes = [{
+    path: '',
+    loadChildren: './user/user.module#UserModule',
+}]
+
